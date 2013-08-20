@@ -70,12 +70,12 @@ typedef enum {
 }
 
 - (float) shadowMargin {
-    return [self tableViewIsGrouped] ? shadow_margin : 0;
+    return [self tableViewIsGrouped] ? [PrettyTableViewCell shadowGroupedMargin] : 0;
 }
 
 @end
 
-
+static CGFloat _shadowGroupedMargin = shadow_margin;
 
 // http://www.raywenderlich.com/2033/core-graphics-101-lines-rectangles-and-gradients
 // https://developer.apple.com/library/mac/documentation/graphicsimaging/reference/CGContext/Reference/reference.html
@@ -367,7 +367,6 @@ typedef enum {
 @synthesize customBackgroundColor, gradientStartColor, gradientEndColor;
 @synthesize shadowOpacity, customSeparatorStyle;
 
-
 - (void) dealloc
 {
     [self.contentView removeObserver:self forKeyPath:@"frame"];
@@ -482,6 +481,16 @@ typedef enum {
         default:
             return 0;
     }    
+}
+
++ (CGFloat)shadowGroupedMargin
+{
+    return _shadowGroupedMargin;
+}
+
++ (void)setShadowGroupedMargin:(CGFloat)shadowMargin
+{
+    _shadowGroupedMargin = shadowMargin;
 }
 
 + (CGFloat) tableView:(UITableView *)tableView neededHeightForIndexPath:(NSIndexPath *)indexPath
