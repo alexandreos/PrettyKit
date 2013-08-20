@@ -567,6 +567,7 @@ static CGFloat _shadowGroupedMargin = shadow_margin;
     switch (self.position) {
         case PrettyTableViewCellPositionTop:
             topMargin = shadowMargin;
+            break;
         case PrettyTableViewCellPositionMiddle:
             // let the separator to be painted, but separator is only painted
             // in grouped table views
