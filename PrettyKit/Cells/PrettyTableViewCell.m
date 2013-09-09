@@ -475,9 +475,9 @@ static CGFloat _shadowGroupedMargin = shadow_margin;
     {
         case PrettyTableViewCellPositionBottom:
         case PrettyTableViewCellPositionTop:
-            return shadow_margin;
+            return [self shadowGroupedMargin];
         case PrettyTableViewCellPositionAlone:
-            return shadow_margin*2;
+            return [self shadowGroupedMargin]*2;
         default:
             return 0;
     }    
@@ -496,7 +496,7 @@ static CGFloat _shadowGroupedMargin = shadow_margin;
 + (CGFloat) tableView:(UITableView *)tableView neededHeightForIndexPath:(NSIndexPath *)indexPath
 {
     PrettyTableViewCellPosition position = [PrettyTableViewCell positionForTableView:tableView indexPath:indexPath];
-    return [PrettyTableViewCell neededHeightForPosition:position tableStyle:tableView.style];
+    return [[self class] neededHeightForPosition:position tableStyle:tableView.style];
 }
 
 - (void) prepareForTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath 
@@ -532,7 +532,7 @@ static CGFloat _shadowGroupedMargin = shadow_margin;
             CGRect rect = CGRectMake(originalFrame.origin.x+shadowMargin,
                                      originalFrame.origin.y+diffY,
                                      originalFrame.size.width - shadowMargin*2,
-                                     originalFrame.size.height- contentView_margin*2 - [PrettyTableViewCell neededHeightForPosition:self.position tableStyle:_tableViewStyle]);
+                                     originalFrame.size.height- contentView_margin*2 - [[self class] neededHeightForPosition:self.position tableStyle:_tableViewStyle]);
             contentView.frame = rect;
         }
     }

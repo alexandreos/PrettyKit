@@ -228,7 +228,7 @@ typedef enum {
 
 /** Indicates the shadow margin to use in grouped table views.
  
- Its value is 4 by default. */
+ Its default value is 4 by default. */
 + (CGFloat) shadowGroupedMargin;
 + (void) setShadowGroupedMargin:(CGFloat) shadowMargin;
 
